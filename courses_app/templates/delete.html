@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .red {
+            color:red;
+        }
+        form {
+            display:inline-block;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+    <title>Delete Course</title>
+</head>
+<body>
+    <h2>Are you sure you want to delete the following course?</h2>
+    <p>Name: {{ course.name }}</p>
+    <p>Description: {{ course.description }}</p>
+    <br>
+    <div>
+        <form action="/courses/no" method="POST">
+            {% csrf_token %}
+            <button type = "submit">No</button>
+        </form>
+        <form action="/courses/{{ course.id }}/yes" method="POST">
+            {% csrf_token %}
+            <button type = "submit" class = "red">Yes, delete this course</button>
+        </form>
+    </div>
+</body>
+</html>
